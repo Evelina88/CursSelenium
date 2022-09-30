@@ -13,7 +13,7 @@ public class FirstSeleniumScript {
 	
 	private static final String WebDriverMAnager = null;
 
-	@Test(priority = 1)
+	@Test(priority = 1, dependsOnMethods = "checkUrl")
 	public void OpenBrowser() {
 		
 		driver = WebDriverManager.chromedriver().create();
