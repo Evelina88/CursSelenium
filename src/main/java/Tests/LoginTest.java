@@ -1,6 +1,8 @@
 package Tests;
 
+import org.testng.annotations.Test;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -12,9 +14,10 @@ import Utils.TestNGListener;
 
 @Listeners(TestNGListener.class)
 public class LoginTest extends BaseTest {
-
+    
+	@Parameters({"user","pass"})
 	@Test
-	public void loginTest() throws InterruptedException {
+	public void loginTest(String user, String pass) throws InterruptedException {
 		NavigationMenu menu = new NavigationMenu(driver);
 		menu.navigateTo(menu.shopLink);
 		
@@ -22,7 +25,7 @@ public class LoginTest extends BaseTest {
 		
 		menu.navigateTo(menu.loginLink);
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginInApp("TestUSer", "12345@67890");
+		loginPage.loginInApp(user, pass);
 		Thread.sleep(5000);
 		loginPage.logoutFromApp();
 	}
